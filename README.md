@@ -28,8 +28,11 @@ Our initial tests with ResNet were a vivid proof of why high accuracy rates can 
 * **Stress Test Findings:** When the model stepped outside its comfort zone, it refused to say "I don't know."
    * It produced **absurd predictions** even with the slightest image corruptions.
    * More worryingly, it acted with **dangerous overconfidence** (99%+ confidence) while making these errors. There was almost no decrease in confidence scores.
-* **ResNet Grad-CAM**: Heat map showing which regions the model focuses on (plots/resnet_gradcam.png)
-* **ResNet Overconfidence Analysis**: Analysis of the model's confidence levels (plots/resnet_oc.png)
+* **Grad-CAM**: The heatmap below shows ResNet's tendency to focus on broader, less specific regions.
+![ResNet Grad-CAM](plots/resnet_gradcam.png)
+
+* **Overconfidence Analysis**: The plot clearly demonstrates ResNet's dangerous overconfidence. The confidence distribution for stress-test data (red) remains dangerously high, overlapping almost completely with the distribution for normal data (blue).
+![ResNet Overconfidence Analysis](plots/resnet_oc.png)
 
 **Summary:** ResNet was an unreliable candidate, prone to making errors silently and with self-assurance.
 
@@ -41,8 +44,11 @@ EfficientNet, however, exhibited a completely different character.
 * **Stress Test Findings:** The model gave an honest response when faced with unfamiliar data.
    * As if saying "I haven't seen these areas, I don't know what to do," it showed **significant and consistent decreases** in confidence scores.
    * This behavior indicated that the model better understood the limits of its own knowledge.
-* **EfficientNet Grad-CAM**: Heat map showing which regions the model focuses on (plots/effnet_gradcam.png)
-* **EfficientNet Overconfidence Analysis**: Analysis of the model's confidence levels (plots/effnet_oc.png)
+* **Grad-CAM**: In contrast, EfficientNet focuses sharply on the relevant areas of the leaf, as shown in the heatmap.
+![EfficientNet Grad-CAM](plots/effnet_gradcam.png)
+
+* **Overconfidence Analysis**: This plot highlights EfficientNet's "honest uncertainty." When faced with stress-test data (red), the model's confidence distribution shifts significantly to the left, indicating it "knows what it doesn't know."
+![EfficientNet Overconfidence Analysis](plots/effnet_oc.png)
 
 **Summary:** EfficientNet offered a more solid foundation as a model that "knows what it doesn't know" and was selected for the continuation of the project.
 
